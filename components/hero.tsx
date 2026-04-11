@@ -36,15 +36,7 @@ export function Hero() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Content */}
-          <div className="text-center lg:text-left">
-            <Badge
-              variant="secondary"
-              className="mb-6 px-4 py-2 text-sm font-medium"
-            >
-              <Star className="w-4 h-4 mr-2 text-amber-500" aria-hidden="true" />
-              Trusted by 10,000+ dog trainers
-            </Badge>
-
+          <div className="text-center lg:text-left lg:self-start lg:mt-24">
             <h1
               id="hero-heading"
               className="text-4xl sm:text-5xl lg:text-6xl font-outfit font-bold tracking-tight text-foreground text-balance leading-tight"
@@ -124,7 +116,7 @@ export function Hero() {
           </div>
 
           {/* App Preview */}
-          <div className="relative lg:pl-8" aria-hidden="true">
+          <div className="relative lg:pl-8 lg:mt-16" aria-hidden="true">
             <div className="relative mx-auto max-w-sm lg:max-w-none">
               {/* Phone Frame */}
               <div className="relative bg-card rounded-[3rem] p-3 shadow-2xl border border-border">

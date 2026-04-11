@@ -1,0 +1,48 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── Helper: check if the caller is an admin ──
+    function isAdmin() {
+      return request.auth != null
+        && exists(/databases/$(database)/documents/users/$(request.auth.uid))
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    // ── users ──
+    match /users/{userId} {
+      allow read: if isSignedIn() && (request.auth.uid == userId || isAdmin());
+
+      // First-time creation: user can only create their own doc with role 'user'
+      allow create: if isSignedIn()
+        && request.auth.uid == userId
+        && request.resource.data.role == 'user';
+
+      // Users can update own doc except role; admins can update anything
+      allow update: if isSignedIn()
+        && (
+          (request.auth.uid == userId && !request.resource.data.diff(resource.data).affectedKeys().hasAny(['role']))
+          || isAdmin()
+        );
+
+      allow delete: if isAdmin();
+    }
+
+    // ── blogs ──
+    match /blogs/{blogId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    // ── faqs ──
+    match /faqs/{faqId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+  }
+}

@@ -68,7 +68,7 @@ export function Header() {
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-3">
             <Button variant="ghost" size="sm" asChild>
-              <Link href="#download">Sign In</Link>
+              <Link href="/login">Sign In</Link>
             </Button>
             <Button size="sm" asChild>
               <Link href="#download">Download App</Link>
@@ -127,7 +127,7 @@ export function Header() {
                 </nav>
                 <div className="space-y-3 py-4 border-t border-border">
                   <Button variant="outline" className="w-full" asChild>
-                    <Link href="#download" onClick={() => setIsOpen(false)}>
+                    <Link href="/login" onClick={() => setIsOpen(false)}>
                       Sign In
                     </Link>
                   </Button>
