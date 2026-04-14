@@ -91,9 +91,18 @@ export async function getAllBlogs(): Promise<Blog[]> {
 }
 
 export async function getEnabledBlogs(): Promise<Blog[]> {
-  const q = query(blogsRef(), where("enabled", "==", true), orderBy("createdAt", "desc"))
-  const snap = await getDocs(q)
-  return snap.docs.map((d) => ({ id: d.id, ...d.data() }) as Blog)
+  try {
+    const q = query(blogsRef(), where("enabled", "==", true), orderBy("createdAt", "desc"))
+    const snap = await getDocs(q)
+    return snap.docs.map((d) => ({ id: d.id, ...d.data() }) as Blog)
+  } catch {
+    // Fallback if composite index is not yet deployed
+    const q = query(blogsRef(), orderBy("createdAt", "desc"))
+    const snap = await getDocs(q)
+    return snap.docs
+      .map((d) => ({ id: d.id, ...d.data() }) as Blog)
+      .filter((blog) => blog.enabled)
+  }
 }
 
 export async function getBlogBySlug(slug: string): Promise<Blog | null> {
@@ -120,6 +129,11 @@ export async function createFAQ(data: FAQInput): Promise<string> {
 }
 
 export async function updateFAQ(id: string, data: Partial<FAQInput>): Promise<void> {
+
+  console.log("Updating FAQ", id, data);
+
+  console.log("Firebase DB instance:", getFirebaseDb());
+
   await updateDoc(doc(getFirebaseDb(), "faqs", id), {
     ...data,
     updatedAt: serverTimestamp(),
@@ -141,7 +155,16 @@ export async function getAllFAQs(): Promise<FAQ[]> {
 }
 
 export async function getEnabledFAQs(): Promise<FAQ[]> {
-  const q = query(faqsRef(), where("enabled", "==", true), orderBy("order", "asc"))
-  const snap = await getDocs(q)
-  return snap.docs.map((d) => ({ id: d.id, ...d.data() }) as FAQ)
+  try {
+    const q = query(faqsRef(), where("enabled", "==", true), orderBy("order", "asc"))
+    const snap = await getDocs(q)
+    return snap.docs.map((d) => ({ id: d.id, ...d.data() }) as FAQ)
+  } catch {
+    // Fallback if composite index is not yet deployed
+    const q = query(faqsRef(), orderBy("order", "asc"))
+    const snap = await getDocs(q)
+    return snap.docs
+      .map((d) => ({ id: d.id, ...d.data() }) as FAQ)
+      .filter((faq) => faq.enabled)
+  }
 }
