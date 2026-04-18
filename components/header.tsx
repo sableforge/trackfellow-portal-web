@@ -6,10 +6,11 @@ import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
 import { Menu, X, MapPin } from "lucide-react"
 
-const navLinks = [
+const navLinks: { href: string; label: string; external?: boolean }[] = [
   { href: "#features", label: "Features" },
   { href: "#community", label: "Community" },
-  { href: "#blog", label: "Blog" },
+  { href: "#pricing", label: "Pricing" },
+  { href: "https://trackfellow-web.sableforge.com/blog", label: "Blog", external: true },
   { href: "#faq", label: "FAQ" },
 ]
 
@@ -57,6 +58,7 @@ export function Header() {
               <li key={link.href}>
                 <Link
                   href={link.href}
+                  {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-secondary"
                 >
                   {link.label}
@@ -116,6 +118,7 @@ export function Header() {
                       <li key={link.href}>
                         <Link
                           href={link.href}
+                          {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                           className="block px-4 py-3 text-base font-medium text-foreground hover:bg-secondary rounded-lg transition-colors"
                           onClick={() => setIsOpen(false)}
                         >

@@ -113,38 +113,6 @@ export function Features() {
             )
           })}
         </div>
-
-        {/* Additional Info */}
-        <div className="mt-16 lg:mt-20">
-          <Card className="bg-primary text-primary-foreground border-0 overflow-hidden">
-            <CardContent className="p-8 lg:p-12">
-              <div className="grid lg:grid-cols-2 gap-8 items-center">
-                <div>
-                  <h3 className="text-2xl lg:text-3xl font-outfit font-bold mb-4 text-balance">
-                    Ready to transform your training?
-                  </h3>
-                  <p className="text-primary-foreground/80 text-lg leading-relaxed">
-                    Join thousands of trainers who have already improved their dog tracking skills with Trackfellow.
-                  </p>
-                </div>
-                <div className="flex flex-wrap gap-6 lg:justify-end">
-                  <div className="text-center">
-                    <p className="text-4xl font-bold">10K+</p>
-                    <p className="text-sm text-primary-foreground/70">Active Users</p>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-4xl font-bold">50K+</p>
-                    <p className="text-sm text-primary-foreground/70">Tracks Logged</p>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-4xl font-bold">4.9</p>
-                    <p className="text-sm text-primary-foreground/70">App Rating</p>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
       </div>
     </section>
   )

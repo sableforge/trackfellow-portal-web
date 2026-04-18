@@ -11,14 +11,14 @@ const footerLinks = {
     links: [
       { label: "Features", href: "#features" },
       { label: "How It Works", href: "#how-it-works" },
-      { label: "Pricing", href: "#" },
+      { label: "Pricing", href: "#pricing" },
       { label: "Download", href: "#download" },
     ],
   },
   resources: {
     title: "Resources",
     links: [
-      { label: "Blog", href: "#articles" },
+      { label: "Blog", href: "https://trackfellow-web.sableforge.com/blog" },
       { label: "Help Center", href: "#" },
       { label: "Community", href: "#community" },
       { label: "Contact", href: "#" },
@@ -27,19 +27,19 @@ const footerLinks = {
   company: {
     title: "Company",
     links: [
-      { label: "About Us", href: "#" },
-      { label: "Careers", href: "#" },
-      { label: "Press", href: "#" },
-      { label: "Partners", href: "#" },
+      { label: "About Us", href: "/about" },
+      { label: "Careers", href: "/careers" },
+      { label: "Press", href: "/press" },
+      { label: "Partners", href: "/partners" },
     ],
   },
   legal: {
     title: "Legal",
     links: [
-      { label: "Privacy Policy", href: "#" },
-      { label: "Terms of Service", href: "#" },
-      { label: "Cookie Policy", href: "#" },
-      { label: "GDPR", href: "#" },
+      { label: "Privacy Policy", href: "/privacy" },
+      { label: "Terms of Service", href: "/terms" },
+      { label: "Cookie Policy", href: "/cookies" },
+      { label: "GDPR", href: "/gdpr" },
     ],
   },
 }
@@ -181,13 +181,13 @@ export function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-background/60">
           <p>&copy; {currentYear} Trackfellow. All rights reserved.</p>
           <div className="flex items-center gap-4">
-            <Link href="#" className="hover:text-background transition-colors">
+            <Link href="/privacy" className="hover:text-background transition-colors">
               Privacy
             </Link>
-            <Link href="#" className="hover:text-background transition-colors">
+            <Link href="/terms" className="hover:text-background transition-colors">
               Terms
             </Link>
-            <Link href="#" className="hover:text-background transition-colors">
+            <Link href="/cookies" className="hover:text-background transition-colors">
               Cookies
             </Link>
           </div>

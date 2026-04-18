@@ -1,42 +1,78 @@
+"use client"
+
+import { useEffect, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowRight, Play, Star, Download, MapPin, Activity, BarChart3 } from "lucide-react"
 
-function AppleIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-      <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-    </svg>
-  )
-}
-
-function PlayStoreIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-      <path d="M3 20.5v-17c0-.59.34-1.11.84-1.35L13.69 12l-9.85 9.85c-.5-.25-.84-.76-.84-1.35zm13.81-5.38L6.05 21.34l8.49-8.49 2.27 2.27zm3.35-4.31c.34.27.56.69.56 1.19s-.22.92-.56 1.19l-2.11 1.24-2.5-2.5 2.5-2.5 2.11 1.38zM6.05 2.66l10.76 6.22-2.27 2.27-8.49-8.49z"/>
-    </svg>
-  )
-}
-
 export function Hero() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const [scrollY, setScrollY] = useState(0)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY)
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsVisible(true), 100)
+    return () => clearTimeout(timer)
+  }, [])
+
   return (
     <section
+      ref={sectionRef}
       id="download"
       aria-labelledby="hero-heading"
       className="relative min-h-[calc(100vh-80px)] flex items-start pt-8 md:pt-12 pb-16 overflow-hidden"
     >
-      {/* Background Elements */}
+      {/* Parallax Background Image */}
+      <div
+        className="absolute inset-0 -z-20"
+        style={{ transform: `translateY(${scrollY * 0.3}px)` }}
+      >
+        <Image
+          src="/5.png"
+          alt=""
+          fill
+          className="object-cover object-top"
+          priority
+        />
+        <div className="absolute inset-0 bg-background/80 dark:bg-background/90" />
+      </div>
+
+      {/* Background blur elements */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-secondary/50 rounded-full blur-3xl opacity-60" />
+      </div>
+
+      {/* Rottweiler image - left side, bounce-in from bottom */}
+      <div
+        className={`absolute bottom-0 left-0 w-[280px] md:w-[380px] lg:w-[440px] -z-10 transition-all duration-1000 ease-out ${
+          isVisible
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-24"
+        }`}
+        style={{ animation: isVisible ? "heroSlideUp 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards" : "none" }}
+      >
+        <Image
+          src="/Rotweiler-01.png"
+          alt=""
+          width={440}
+          height={600}
+          className="object-contain object-bottom pointer-events-none select-none"
+          priority
+        />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Content */}
-          <div className="text-center lg:text-left lg:self-start lg:mt-24">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[calc(100vh-160px)]">
+          {/* Content - centered vertically on left */}
+          <div className="text-center lg:text-left flex flex-col justify-center">
             <h1
               id="hero-heading"
               className="text-4xl sm:text-5xl lg:text-6xl font-outfit font-bold tracking-tight text-foreground text-balance leading-tight"
@@ -49,29 +85,29 @@ export function Hero() {
               Enhance your dog tracking experience with Trackfellow, the innovative app designed to make tracking and mantrailing training fun and easy.
             </p>
 
-            {/* App Store Download Buttons */}
-            <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
-              <Button size="lg" className="group text-base px-6 h-14" asChild>
-                <Link href="https://apps.apple.com/app/trackfellow" target="_blank" rel="noopener noreferrer">
-                  <AppleIcon className="w-6 h-6 mr-3" aria-hidden="true" />
-                  <div className="text-left">
-                    <span className="block text-xs opacity-80">Download on the</span>
-                    <span className="block font-semibold">App Store</span>
-                  </div>
-                </Link>
-              </Button>
-              <Button size="lg" className="group text-base px-6 h-14" asChild>
-                <Link href="https://play.google.com/store/apps/details?id=com.trackfellow" target="_blank" rel="noopener noreferrer">
-                  <PlayStoreIcon className="w-6 h-6 mr-3" aria-hidden="true" />
-                  <div className="text-left">
-                    <span className="block text-xs opacity-80">Get it on</span>
-                    <span className="block font-semibold">Google Play</span>
-                  </div>
-                </Link>
-              </Button>
+            {/* App Store Download Buttons - using images */}
+            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
+              <Link href="https://apps.apple.com/app/trackfellow" target="_blank" rel="noopener noreferrer" className="transition-transform hover:scale-105">
+                <Image
+                  src="/appstore.png"
+                  alt="Download on the App Store"
+                  width={180}
+                  height={54}
+                  className="h-[54px] w-auto"
+                />
+              </Link>
+              <Link href="https://play.google.com/store/apps/details?id=com.trackfellow" target="_blank" rel="noopener noreferrer" className="transition-transform hover:scale-105">
+                <Image
+                  src="/playstore.png"
+                  alt="Get it on Google Play"
+                  width={180}
+                  height={54}
+                  className="h-[54px] w-auto"
+                />
+              </Link>
             </div>
 
-            {/* Watch Demo Button - Isolated */}
+            {/* Watch Demo Button */}
             <div className="mt-4 flex justify-center lg:justify-start">
               <Button variant="ghost" size="lg" className="text-base px-6 text-muted-foreground hover:text-foreground" asChild>
                 <Link href="#features">
@@ -115,9 +151,9 @@ export function Hero() {
             </div>
           </div>
 
-          {/* App Preview */}
-          <div className="relative lg:pl-8 lg:mt-16" aria-hidden="true">
-            <div className="relative mx-auto max-w-sm lg:max-w-none">
+          {/* App Preview - scaled down 25% */}
+          <div className="relative lg:pl-8" aria-hidden="true">
+            <div className="relative mx-auto max-w-sm lg:max-w-none scale-75 origin-top">
               {/* Phone Frame */}
               <div className="relative bg-card rounded-[3rem] p-3 shadow-2xl border border-border">
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-foreground/10 rounded-b-2xl" />

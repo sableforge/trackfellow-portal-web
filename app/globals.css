@@ -142,3 +142,22 @@
 .font-outfit {
   font-family: var(--font-outfit);
 }
+
+/* Hero bounce-in animation */
+@keyframes heroSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(80px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-12px);
+  }
+  80% {
+    transform: translateY(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
