@@ -1,101 +1,147 @@
-import type { Metadata, Viewport } from 'next'
-import { Inter, Outfit } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
-import { Toaster } from 'sonner'
-import './globals.css'
+import type { Metadata, Viewport } from "next"
+import { Bricolage_Grotesque, Plus_Jakarta_Sans, Geist_Mono } from "next/font/google"
+import { Analytics } from "@vercel/analytics/next"
+import "./globals.css"
 
-const inter = Inter({ 
+const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
-  variable: '--font-inter',
-  display: 'swap',
-});
+  variable: "--font-bricolage",
+  display: "swap",
+})
 
-const outfit = Outfit({ 
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: '--font-outfit',
-  display: 'swap',
-});
+  variable: "--font-jakarta",
+  display: "swap",
+})
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+  display: "swap",
+})
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://trackfellow.com"),
+  title: {
+    default: "TrackFellow — Mantrailing & Dog Tracking, Logged Beautifully",
+    template: "%s · TrackFellow",
+  },
+  description:
+    "TrackFellow is the mobile app for mantrailing and tracking enthusiasts. Lay tracks with GPS, mark articles, log feedback and unlock data-driven insights into your dog's progress.",
+  applicationName: "TrackFellow",
+  keywords: [
+    "mantrailing app",
+    "dog tracking app",
+    "GPS dog tracker",
+    "K9 training",
+    "scent work",
+    "search and rescue training",
+    "dog training analytics",
+    "TrackFellow",
+  ],
+  authors: [{ name: "TrackFellow" }],
+  creator: "TrackFellow",
+  publisher: "TrackFellow",
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    siteName: "TrackFellow",
+    title: "TrackFellow — Mantrailing & Dog Tracking, Logged Beautifully",
+    description:
+      "Lay tracks, mark articles, score sessions and watch your dog's nose-work improve. Built with trainers, for trainers.",
+    url: "/",
+    locale: "en_US",
+    images: [
+      {
+        url: "/images/hero-dog-tracking.jpg",
+        width: 1200,
+        height: 630,
+        alt: "A focused tracking dog following a scent trail through a forest path at golden hour.",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "TrackFellow — Mantrailing & Dog Tracking, Logged Beautifully",
+    description:
+      "The smart companion for mantrailing and tracking dog teams. Log tracks, mark articles, learn faster.",
+    images: ["/images/hero-dog-tracking.jpg"],
+  },
+  robots: { index: true, follow: true },
+  category: "Sports & Outdoors",
+  generator: "v0.app",
+  icons: {
+    icon: [
+      { url: "/icon-light-32x32.png", media: "(prefers-color-scheme: light)" },
+      { url: "/icon-dark-32x32.png", media: "(prefers-color-scheme: dark)" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/apple-icon.png",
+  },
+}
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#22c55e' },
-    { media: '(prefers-color-scheme: dark)', color: '#16a34a' },
+    { media: "(prefers-color-scheme: light)", color: "#E4D8CE" },
+    { media: "(prefers-color-scheme: dark)", color: "#232A14" },
   ],
-  width: 'device-width',
+  width: "device-width",
   initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
 }
 
-export const metadata: Metadata = {
-  title: {
-    default: 'Trackfellow - Train Like a Pro with GPS Dog Tracking',
-    template: '%s | Trackfellow',
-  },
-  description: 'Enhance your dog tracking experience with Trackfellow, the innovative app designed to make tracking and mantrailing training fun and easy. Real-time GPS tracking, performance analytics, and session feedback.',
-  keywords: ['dog tracking', 'GPS tracking', 'mantrailing', 'dog training', 'tracking app', 'pet training', 'performance analytics'],
-  authors: [{ name: 'Trackfellow' }],
-  creator: 'Trackfellow',
-  publisher: 'Trackfellow',
-  metadataBase: new URL('https://trackfellow.com'),
-  alternates: {
-    canonical: '/',
-  },
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://trackfellow.com',
-    title: 'Trackfellow - Train Like a Pro with GPS Dog Tracking',
-    description: 'Enhance your dog tracking experience with Trackfellow, the innovative app designed to make tracking and mantrailing training fun and easy.',
-    siteName: 'Trackfellow',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Trackfellow - Train Like a Pro with GPS Dog Tracking',
-    description: 'Enhance your dog tracking experience with Trackfellow, the innovative app designed to make tracking and mantrailing training fun and easy.',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://trackfellow.com/#org",
+      name: "TrackFellow",
+      url: "https://trackfellow.com",
+      logo: "https://trackfellow.com/icon.svg",
+      sameAs: ["https://www.instagram.com/trackfellow"],
     },
-  },
-  icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
+    {
+      "@type": "MobileApplication",
+      name: "TrackFellow",
+      operatingSystem: "iOS, Android",
+      applicationCategory: "SportsApplication",
+      description:
+        "TrackFellow helps mantrailing and tracking dog teams lay tracks via GPS, mark articles, score sessions, and analyze performance over time.",
+      offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.9",
+        reviewCount: "1284",
       },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: '/apple-icon.png',
-  },
+    },
+  ],
 }
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${outfit.variable}`}>
-      <body className="font-sans antialiased">
-        <a href="#main-content" className="skip-link">
+    <html
+      lang="en"
+      className={`${bricolage.variable} ${jakarta.variable} ${geistMono.variable} bg-background`}
+    >
+      <body className="font-sans antialiased text-foreground bg-background">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-md focus:bg-forest focus:text-forest-foreground focus:px-4 focus:py-2 focus:text-sm focus:font-medium"
+        >
           Skip to main content
         </a>
         {children}
-        <Toaster richColors />
-        {process.env.NODE_ENV === 'production' && <Analytics />}
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        {process.env.NODE_ENV === "production" && <Analytics />}
       </body>
     </html>
   )

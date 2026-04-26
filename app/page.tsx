@@ -1,25 +1,33 @@
-import { Header } from "@/components/header"
-import { Hero } from "@/components/hero"
-import { Features } from "@/components/features"
-import { Social } from "@/components/social"
-import { Pricing } from "@/components/pricing"
-import { FAQ } from "@/components/faq"
-import { Footer } from "@/components/footer"
-import { StructuredData } from "@/components/structured-data"
+import { TopNav } from "@/components/site/top-nav"
+import { Hero } from "@/components/site/hero"
+import { StatsMarquee } from "@/components/site/stats-marquee"
+import { BentoFeatures } from "@/components/site/bento-features"
+import { HowItWorks } from "@/components/site/how-it-works"
+import { AppShowcase } from "@/components/site/app-showcase"
+import { Founder } from "@/components/site/founder"
+import { Articles } from "@/components/site/articles"
+import { Community } from "@/components/site/community"
+import { CtaDownload } from "@/components/site/cta-download"
+import { SiteFooter } from "@/components/site/site-footer"
+import { MobileCta } from "@/components/site/mobile-cta"
 
-export default function Home() {
+export default function HomePage() {
   return (
     <>
-      <StructuredData />
-      <Header />
-      <main id="main-content" role="main">
+      <TopNav />
+      <main id="main" className="relative">
         <Hero />
-        <Features />
-        <Social />
-        <Pricing />
-        <FAQ />
+        <StatsMarquee />
+        <BentoFeatures />
+        <HowItWorks />
+        <AppShowcase />
+        <Founder />
+        <Articles />
+        <Community />
+        <CtaDownload />
       </main>
-      <Footer />
+      <SiteFooter />
+      <MobileCta />
     </>
   )
 }
