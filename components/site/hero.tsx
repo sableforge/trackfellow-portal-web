@@ -7,7 +7,7 @@ export function Hero() {
   return (
     <section
       aria-labelledby="hero-title"
-      className="relative overflow-hidden pt-28 pb-16 sm:pt-32 sm:pb-24 lg:pt-40 lg:pb-32"
+      className="relative overflow-hidden pt-20 pb-12 sm:pt-24 sm:pb-20 lg:pt-28 lg:pb-28"
     >
       {/* parallax background art */}
       <Parallax
@@ -28,7 +28,7 @@ export function Hero() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-8">
           {/* Copy */}
-          <div className="lg:col-span-7">
+          <div className="text-center lg:col-span-7 lg:text-left">
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1.5 text-xs font-medium text-foreground/80 backdrop-blur">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full rounded-full bg-primary opacity-70 animate-scent" />
@@ -52,18 +52,18 @@ export function Hero() {
               like a <span className="text-primary">fellow.</span>
             </h1>
 
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-foreground/80 text-pretty">
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-foreground/80 text-pretty mx-auto lg:mx-0">
               TrackFellow is the pocket field-book for mantrailing and tracking
               dog teams. Lay tracks with GPS, mark articles in a tap, score
               every session, and watch your dog&apos;s nose-work get sharper
               week after week.
             </p>
 
-            <div className="mt-8">
+            <div className="mt-8 flex justify-center lg:justify-start">
               <StoreButtons />
             </div>
 
-            <dl className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
+            <dl className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 lg:justify-start">
               <div className="flex items-center gap-2">
                 <div className="flex" aria-hidden="true">
                   {[...Array(5)].map((_, i) => (
@@ -104,7 +104,7 @@ export function Hero() {
             {/* photo card with parallax */}
             <Parallax
               speed={-0.08}
-              className="absolute -left-2 -top-6 hidden w-44 sm:block lg:-left-4 lg:w-56"
+              className="absolute -left-8 -top-6 hidden w-44 sm:block lg:-left-16 lg:w-56"
             >
               <figure className="overflow-hidden rounded-3xl ring-1 ring-border ring-soft rotate-[-6deg]">
                 <Image
@@ -120,7 +120,7 @@ export function Hero() {
 
             <Parallax
               speed={-0.16}
-              className="absolute -right-2 bottom-2 hidden w-40 sm:block lg:-right-6 lg:w-52"
+              className="absolute -right-8 bottom-2 hidden w-40 sm:block lg:-right-16 lg:w-52"
             >
               <figure className="overflow-hidden rounded-3xl ring-1 ring-border ring-soft rotate-[5deg]">
                 <Image
@@ -134,7 +134,10 @@ export function Hero() {
             </Parallax>
 
             {/* phone */}
-            <Parallax speed={0.06} className="relative mx-auto -mt-25 w-[330px] sm:w-[352px] md:w-[396px] lg:w-[506px] h-auto">
+            <Parallax
+              speed={0.06}
+              className="relative mx-auto mt-6 h-auto w-full max-w-[260px] sm:mt-8 sm:max-w-[320px] md:max-w-[380px] lg:-mt-20 lg:max-w-[480px] xl:max-w-[506px]"
+            >
               <Image
                 src="/images/hero-app-showcase.webp"
                 alt="TrackFellow live track screen showing the route, articles and score."

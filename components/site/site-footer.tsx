@@ -4,17 +4,17 @@ const NAV = {
   product: {
     title: "Product",
     links: [
-      { label: "Features", href: "#features" },
-      { label: "How it works", href: "#how-it-works" },
-      { label: "Pricing", href: "#download" },
-      { label: "Download", href: "#download" },
+      { label: "Features", href: "/#features" },
+      { label: "How it works", href: "/#how-it-works" },
+      { label: "Pricing", href: "/#download" },
+      { label: "Download", href: "/#download" },
     ],
   },
   company: {
     title: "Company",
     links: [
-      { label: "About", href: "#story" },
-      { label: "Blog", href: "#articles" },
+      { label: "About", href: "/#story" },
+      { label: "Blog", href: "/#articles" },
       { label: "Community", href: "https://instagram.com/trackfellow" },
       { label: "Contact", href: "mailto:hello@trackfellow.com" },
     ],
