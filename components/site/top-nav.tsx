@@ -42,49 +42,67 @@ export function TopNav() {
     >
       <nav
         aria-label="Primary"
-        className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8"
+        className="mx-auto flex h-16 max-w-7xl items-center gap-4 px-4 sm:px-6 lg:px-8"
       >
-        <a
-          href="#"
-          className="flex items-center gap-2 rounded-md py-1"
-          aria-label="TrackFellow home"
-        >
-          <BrandMark />
-        </a>
+        {/* Left slot — desktop: logo | mobile: invisible spacer (same width as hamburger) */}
+        <div className="flex flex-1 items-center">
+          <a
+            href="#"
+            className="hidden rounded-md py-1 md:flex"
+            aria-label="TrackFellow home"
+          >
+            <BrandMark />
+          </a>
+          {/* Mobile spacer matching hamburger size */}
+          <div className="h-11 w-11 md:hidden" aria-hidden="true" />
+        </div>
 
-        <ul className="hidden items-center gap-1 md:flex">
-          {NAV_LINKS.map((l) => (
-            <li key={l.href}>
-              <a
-                href={l.href}
-                className="rounded-full px-4 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-foreground"
-              >
-                {l.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+        {/* Center slot — desktop: nav links | mobile: logo */}
+        <div className="flex flex-2 items-center justify-center">
+          {/* Desktop nav links */}
+          <ul className="hidden items-center gap-1 md:flex">
+            {NAV_LINKS.map((l) => (
+              <li key={l.href}>
+                <a
+                  href={l.href}
+                  className="rounded-full px-4 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-foreground"
+                >
+                  {l.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          {/* Mobile centered logo */}
+          <a
+            href="#"
+            className="flex items-center rounded-md py-1 md:hidden"
+            aria-label="TrackFellow home"
+          >
+            <BrandMark />
+          </a>
+        </div>
 
-        <div className="hidden items-center gap-2 md:flex">
+        {/* Right slot — desktop: CTA | mobile: hamburger */}
+        <div className="flex flex-1 items-center justify-end gap-2">
           <a
             href="#download"
-            className="inline-flex items-center gap-2 rounded-full bg-forest px-5 py-2.5 text-sm font-semibold text-forest-foreground shadow-sm transition-transform hover:-translate-y-0.5"
+            className="hidden items-center gap-2 rounded-full bg-forest px-5 py-2.5 text-sm font-semibold text-forest-foreground shadow-sm transition-transform hover:-translate-y-0.5 md:inline-flex"
           >
             Get the app
             <span aria-hidden="true">→</span>
           </a>
-        </div>
 
-        <button
-          type="button"
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-          aria-controls="mobile-menu"
-          onClick={() => setOpen((v) => !v)}
-          className="grid h-11 w-11 place-items-center rounded-full border border-border bg-background/80 text-foreground md:hidden"
-        >
-          {open ? <X size={20} /> : <Menu size={20} />}
-        </button>
+          <button
+            type="button"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            onClick={() => setOpen((v) => !v)}
+            className="grid h-11 w-11 place-items-center rounded-full border border-border bg-background/80 text-foreground md:hidden"
+          >
+            {open ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile menu */}

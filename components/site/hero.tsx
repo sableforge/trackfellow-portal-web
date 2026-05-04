@@ -1,8 +1,6 @@
 import Image from "next/image"
 import { Star, MapPin, Compass } from "lucide-react"
 import { Parallax } from "./parallax"
-import { PhoneFrame } from "./phone-frame"
-import { TrackMapScreen } from "./track-map-screen"
 import { StoreButtons } from "./store-buttons"
 
 export function Hero() {
@@ -106,7 +104,7 @@ export function Hero() {
             {/* photo card with parallax */}
             <Parallax
               speed={-0.08}
-              className="absolute -left-4 -top-6 hidden w-44 sm:block lg:-left-6 lg:w-56"
+              className="absolute -left-2 -top-6 hidden w-44 sm:block lg:-left-4 lg:w-56"
             >
               <figure className="overflow-hidden rounded-3xl ring-1 ring-border ring-soft rotate-[-6deg]">
                 <Image
@@ -136,10 +134,15 @@ export function Hero() {
             </Parallax>
 
             {/* phone */}
-            <Parallax speed={0.06} className="relative">
-              <PhoneFrame label="TrackFellow live track screen showing the route, articles and score.">
-                <TrackMapScreen />
-              </PhoneFrame>
+            <Parallax speed={0.06} className="relative mx-auto -mt-25 w-[330px] sm:w-[352px] md:w-[396px] lg:w-[506px] h-auto">
+              <Image
+                src="/images/hero-app-showcase.webp"
+                alt="TrackFellow live track screen showing the route, articles and score."
+                width={340}
+                height={720}
+                className="w-full h-auto object-contain drop-shadow-2xl"
+                priority
+              />
             </Parallax>
 
             {/* floating chips */}
