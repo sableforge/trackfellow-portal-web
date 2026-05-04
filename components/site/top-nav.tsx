@@ -1,20 +1,26 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
 import { BrandMark } from "./brand-mark"
 import { cn } from "@/lib/utils"
 
 const NAV_LINKS = [
-  { href: "#features", label: "Features" },
-  { href: "#how-it-works", label: "How it works" },
-  { href: "#story", label: "Our story" },
-  { href: "#articles", label: "Articles" },
+  { hash: "features", label: "Features" },
+  { hash: "how-it-works", label: "How it works" },
+  { hash: "story", label: "Our story" },
+  { hash: "articles", label: "Articles" },
 ]
 
 export function TopNav() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const pathname = usePathname()
+  const isHome = pathname === "/"
+  const hrefFor = (hash: string) => (isHome ? `#${hash}` : `/#${hash}`)
+  const downloadHref = isHome ? "#download" : "/#download"
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12)
@@ -46,13 +52,13 @@ export function TopNav() {
       >
         {/* Left slot — desktop: logo | mobile: invisible spacer (same width as hamburger) */}
         <div className="flex flex-1 items-center">
-          <a
-            href="#"
+          <Link
+            href="/"
             className="hidden rounded-md py-1 md:flex"
             aria-label="TrackFellow home"
           >
             <BrandMark />
-          </a>
+          </Link>
           {/* Mobile spacer matching hamburger size */}
           <div className="h-11 w-11 md:hidden" aria-hidden="true" />
         </div>
@@ -62,35 +68,35 @@ export function TopNav() {
           {/* Desktop nav links */}
           <ul className="hidden items-center gap-1 md:flex">
             {NAV_LINKS.map((l) => (
-              <li key={l.href}>
-                <a
-                  href={l.href}
+              <li key={l.hash}>
+                <Link
+                  href={hrefFor(l.hash)}
                   className="rounded-full px-4 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-foreground"
                 >
                   {l.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
           {/* Mobile centered logo */}
-          <a
-            href="#"
+          <Link
+            href="/"
             className="flex items-center rounded-md py-1 md:hidden"
             aria-label="TrackFellow home"
           >
             <BrandMark />
-          </a>
+          </Link>
         </div>
 
         {/* Right slot — desktop: CTA | mobile: hamburger */}
         <div className="flex flex-1 items-center justify-end gap-2">
-          <a
-            href="#download"
+          <Link
+            href={downloadHref}
             className="hidden items-center gap-2 rounded-full bg-forest px-5 py-2.5 text-sm font-semibold text-forest-foreground shadow-sm transition-transform hover:-translate-y-0.5 md:inline-flex"
           >
             Get the app
             <span aria-hidden="true">→</span>
-          </a>
+          </Link>
 
           <button
             type="button"
@@ -113,25 +119,25 @@ export function TopNav() {
       >
         <ul className="flex flex-col">
           {NAV_LINKS.map((l) => (
-            <li key={l.href}>
-              <a
-                href={l.href}
+            <li key={l.hash}>
+              <Link
+                href={hrefFor(l.hash)}
                 onClick={() => setOpen(false)}
                 className="block rounded-2xl px-4 py-3 text-base font-medium text-foreground hover:bg-muted"
               >
                 {l.label}
-              </a>
+              </Link>
             </li>
           ))}
           <li className="mt-2">
-            <a
-              href="#download"
+            <Link
+              href={downloadHref}
               onClick={() => setOpen(false)}
               className="flex items-center justify-center gap-2 rounded-2xl bg-forest px-4 py-3 text-base font-semibold text-forest-foreground"
             >
               Get the app
               <span aria-hidden="true">→</span>
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

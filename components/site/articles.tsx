@@ -1,35 +1,7 @@
 import Image from "next/image"
+import Link from "next/link"
 import { Calendar, ArrowRight } from "lucide-react"
-
-const ARTICLES = [
-  {
-    slug: "meet-jenna",
-    title: "Meet Jenna — the Founder of TrackFellow",
-    excerpt:
-      "Discover the vision behind TrackFellow, a user-friendly app revolutionizing dog tracking.",
-    date: "2026-03-10",
-    cover: "/images/founder-jenna.jpg",
-    alt: "Jenna, founder of TrackFellow, standing with her tracking dog in a forest.",
-  },
-  {
-    slug: "can-any-dog-track",
-    title: "Can any dog be a tracking dog?",
-    excerpt:
-      "All dogs have a natural ability to follow scents and can be trained to track. Some breeds excel naturally.",
-    date: "2026-02-18",
-    cover: "/images/community-dog.jpg",
-    alt: "A working dog focused and alert in a natural setting.",
-  },
-  {
-    slug: "basics-of-dog-tracking",
-    title: "The Basics of dog tracking — A guide for beginners",
-    excerpt:
-      "Dog tracking is the process of a dog following a trail based on scent. It's a natural ability that can be trained.",
-    date: "2026-01-29",
-    cover: "/images/training-action.jpg",
-    alt: "Aerial view of a track path winding through a meadow with small markers.",
-  },
-]
+import { ARTICLES } from "@/lib/articles"
 
 export function Articles() {
   return (
@@ -60,7 +32,7 @@ export function Articles() {
         <ul className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {ARTICLES.map((a) => (
             <li key={a.slug}>
-              <article className="group flex h-full flex-col overflow-hidden rounded-3xl bg-background ring-1 ring-border transition-transform hover:-translate-y-1 ring-soft">
+              <article className="group relative flex h-full flex-col overflow-hidden rounded-3xl bg-background ring-1 ring-border transition-transform hover:-translate-y-1 ring-soft">
                 <figure className="relative aspect-[16/10] w-full overflow-hidden">
                   <Image
                     src={a.cover}
@@ -83,12 +55,12 @@ export function Articles() {
                     }).format(new Date(a.date))}
                   </time>
                   <h3 className="mt-3 font-display text-xl font-semibold leading-tight tracking-tight text-balance">
-                    <a
-                      href={`#${a.slug}`}
+                    <Link
+                      href={`/blog/${a.slug}`}
                       className="after:absolute after:inset-0"
                     >
                       {a.title}
-                    </a>
+                    </Link>
                   </h3>
                   <p className="mt-2 flex-1 text-sm leading-relaxed text-foreground/70 text-pretty">
                     {a.excerpt}

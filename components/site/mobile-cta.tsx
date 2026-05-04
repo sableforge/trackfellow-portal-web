@@ -25,7 +25,7 @@ export function MobileCta() {
     >
       <div className="mx-3 mb-3 rounded-2xl border border-border/80 bg-background/95 p-3 backdrop-blur-md shadow-[0_-4px_24px_-4px_rgba(56,68,32,0.15)]">
         <a
-          href="#download"
+          href="/#download"
           className="flex items-center justify-center gap-2 rounded-xl bg-forest px-4 py-3 text-sm font-semibold text-forest-foreground transition-transform active:scale-95"
           aria-label="Get the TrackFellow app"
         >
