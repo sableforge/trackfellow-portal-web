@@ -9,8 +9,9 @@ RUN corepack enable && corepack prepare pnpm@9 --activate
 # Copy manifests
 COPY package.json pnpm-lock.yaml ./
 
-# Approve builds for dependencies automatically in CI environment
-RUN pnpm approve-builds
+# Configure pnpm to handle side-effects automatically in non-interactive CI environments
+RUN pnpm config set supportedArchitectures.os ["linux"] && \
+    pnpm config set supportedArchitectures.cpu ["x64"]
 
 # Install production + dev dependencies (needed for build)
 RUN pnpm install --frozen-lockfile
