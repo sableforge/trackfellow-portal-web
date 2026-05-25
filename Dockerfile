@@ -23,13 +23,20 @@ WORKDIR /app
 
 RUN corepack enable && corepack prepare pnpm@9 --activate
 
+# Bring over installed dependencies
 COPY --from=deps /app/node_modules ./node_modules
+
+# CRITICAL: Copy package manifests explicitly first
+COPY package.json pnpm-lock.yaml ./
+
+# Copy the rest of your application source code
 COPY . .
 
 # Disable Next.js telemetry during build
 ENV NEXT_TELEMETRY_DISABLED=1
 
-RUN pnpm build
+# Execute the build
+RUN pnpm run build
 
 # Stage 3: Production runtime
 FROM node:22-alpine AS runner
@@ -43,7 +50,6 @@ RUN addgroup --system --gid 1001 nodejs && \
     adduser --system --uid 1001 nextjs
 
 # Copy only the standalone output and required static assets
-# Note: Ensure output: 'standalone' is in your next.config.js!
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
