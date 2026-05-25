@@ -3,11 +3,14 @@ FROM node:22-alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-# Install pnpm
-RUN corepack enable && corepack prepare pnpm@latest --activate
+# Enable corepack and install pnpm
+RUN corepack enable && corepack prepare pnpm@9 --activate
 
-# Copy lockfile and manifests
+# Copy manifests
 COPY package.json pnpm-lock.yaml ./
+
+# Approve builds for dependencies automatically in CI environment
+RUN pnpm approve-builds
 
 # Install production + dev dependencies (needed for build)
 RUN pnpm install --frozen-lockfile
@@ -17,7 +20,7 @@ FROM node:22-alpine AS builder
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-RUN corepack enable && corepack prepare pnpm@latest --activate
+RUN corepack enable && corepack prepare pnpm@9 --activate
 
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
@@ -39,6 +42,7 @@ RUN addgroup --system --gid 1001 nodejs && \
     adduser --system --uid 1001 nextjs
 
 # Copy only the standalone output and required static assets
+# Note: Ensure output: 'standalone' is in your next.config.js!
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
