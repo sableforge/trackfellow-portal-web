@@ -26,17 +26,14 @@ RUN corepack enable && corepack prepare pnpm@9 --activate
 # Bring over installed dependencies
 COPY --from=deps /app/node_modules ./node_modules
 
-# CRITICAL: Copy package manifests explicitly first
-COPY package.json pnpm-lock.yaml ./
-
-# Copy the rest of your application source code
+# Copy the entire source tree explicitly
 COPY . .
 
 # Disable Next.js telemetry during build
 ENV NEXT_TELEMETRY_DISABLED=1
 
-# Execute the build
-RUN pnpm run build
+# BYPASS "pnpm run" to directly trigger the compiler, avoiding the pnpm bug
+RUN ./node_modules/.bin/next build
 
 # Stage 3: Production runtime
 FROM node:22-alpine AS runner
