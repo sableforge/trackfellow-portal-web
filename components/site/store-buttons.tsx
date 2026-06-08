@@ -19,7 +19,7 @@ export function StoreButtons({
         href="#download"
         aria-label="Download TrackFellow on the App Store"
         className={cn(
-          "group inline-flex min-w-[170px] items-center gap-3 rounded-2xl px-4 py-3 transition-transform hover:-translate-y-0.5 active:translate-y-0",
+          "group inline-flex min-w-42.5 items-center gap-1.5 rounded-2xl px-6 py-3 transition-transform hover:-translate-y-0.5 active:translate-y-0",
           base,
         )}
       >
@@ -42,7 +42,7 @@ export function StoreButtons({
         href="#download"
         aria-label="Get TrackFellow on Google Play"
         className={cn(
-          "group inline-flex min-w-[170px] items-center gap-3 rounded-2xl px-4 py-3 transition-transform hover:-translate-y-0.5 active:translate-y-0",
+          "group inline-flex min-w-42.5 items-center gap-1.5 rounded-2xl px-6 py-3 transition-transform hover:-translate-y-0.5 active:translate-y-0",
           base,
         )}
       >

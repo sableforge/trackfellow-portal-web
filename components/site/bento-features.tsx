@@ -20,7 +20,7 @@ export function BentoFeatures() {
         <header className="mx-auto max-w-2xl text-center">
           <p className="inline-flex items-center gap-2 rounded-full bg-card px-3 py-1 text-xs font-medium text-primary ring-1 ring-border">
             <Sparkles size={14} aria-hidden="true" />
-            Everything in one tracker
+            How does TrackFellow work?
           </p>
           <h2
             id="features-title"
@@ -35,15 +35,19 @@ export function BentoFeatures() {
           </p>
         </header>
 
-        <div className="mt-14 grid auto-rows-[minmax(180px,_auto)] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6 lg:gap-5">
+        <div className="mt-14 grid auto-rows-[minmax(180px,auto)] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6 lg:gap-5">
           {/* GPS Tracking — large */}
           <Card
             className="bg-primary text-primary-foreground sm:col-span-2 lg:col-span-3 lg:row-span-2"
             icon={<MapPinned size={20} />}
             tone="dark"
             eyebrow="GPS tracking"
-            title="Lay the trail. We'll remember every step."
-            body="Walk the path, drop articles in a tap and watch a live map render the route, distance and elapsed time — even offline."
+            title="Real-Time GPS Tracking"
+            body="To lay a track, simply walk the path yourself first, place articles along the way, 
+              and log their positions on your phone's map. As you lay the track, 
+              you can view a real-time map displaying the route and articles locations. 
+              The app provides a detailed summary, including track length, time taken, 
+              and the number of articles placed."
           >
             <div className="mt-6 grid grid-cols-3 gap-3 text-primary-foreground">
               {[
@@ -53,7 +57,7 @@ export function BentoFeatures() {
               ].map((s) => (
                 <div
                   key={s.k}
-                  className="rounded-2xl bg-primary-foreground/10 p-3 ring-1 ring-primary-foreground/15"
+                  className="rounded-2xl bg-primary-foreground/10 p-3 ring-1 ring-primary-foreground/15 text-center"
                 >
                   <p className="text-[10px] uppercase tracking-wide opacity-80">
                     {s.k}
@@ -91,10 +95,11 @@ export function BentoFeatures() {
           <Card
             className="bg-accent text-accent-foreground sm:col-span-2 lg:col-span-3"
             icon={<Bookmark size={20} />}
-            eyebrow="Article marking"
-            title="One thumb. One tap."
-            body="Drop scent articles right where you stand. Add notes, photos or wind direction without ever leaving the map."
-          >
+            eyebrow="Session Feedback"
+            title="Your Settings"
+            body="Customize your preferences to fit your training needs. 
+              Adjust various settings to personalize your experience, 
+              ensuring that Trackfellow aligns perfectly with your training goals and methods.">
             <div className="mt-4 flex items-center gap-2">
               {["Glove", "Key", "Sock"].map((t) => (
                 <span

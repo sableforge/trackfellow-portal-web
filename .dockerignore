@@ -11,4 +11,5 @@ README.md
 .vscode
 .idea
 *.log
+pnpm-debug.log*
 service-account.json
