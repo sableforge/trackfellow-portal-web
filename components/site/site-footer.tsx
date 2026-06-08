@@ -15,6 +15,7 @@ const NAV = {
     links: [
       { label: "About", href: "/#story" },
       { label: "Blog", href: "/#articles" },
+      { label: "Sponsorship", href: "/sponsorship" },
       { label: "Community", href: "https://instagram.com/trackfellow" },
       { label: "Contact", href: "mailto:hello@trackfellow.com" },
     ],
