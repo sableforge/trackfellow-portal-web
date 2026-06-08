@@ -7,11 +7,12 @@ import { Menu, X } from "lucide-react"
 import { BrandMark } from "./brand-mark"
 import { cn } from "@/lib/utils"
 
-const NAV_LINKS = [
+const NAV_LINKS: { hash?: string; href?: string; label: string }[] = [
   { hash: "features", label: "Features" },
   { hash: "how-it-works", label: "How it works" },
   { hash: "story", label: "Our story" },
   { hash: "articles", label: "Articles" },
+  { href: "/sponsorship", label: "Sponsorship" },
 ]
 
 export function TopNav() {
@@ -68,9 +69,9 @@ export function TopNav() {
           {/* Desktop nav links */}
           <ul className="hidden items-center gap-1 md:flex">
             {NAV_LINKS.map((l) => (
-              <li key={l.hash}>
+              <li key={l.label}>
                 <Link
-                  href={hrefFor(l.hash)}
+                  href={l.href ?? hrefFor(l.hash!)}
                   className="rounded-full px-4 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-foreground"
                 >
                   {l.label}
@@ -119,9 +120,9 @@ export function TopNav() {
       >
         <ul className="flex flex-col">
           {NAV_LINKS.map((l) => (
-            <li key={l.hash}>
+            <li key={l.label}>
               <Link
-                href={hrefFor(l.hash)}
+                href={l.href ?? hrefFor(l.hash!)}
                 onClick={() => setOpen(false)}
                 className="block rounded-2xl px-4 py-3 text-base font-medium text-foreground hover:bg-muted"
               >
