@@ -6,6 +6,7 @@ const NAV = {
     links: [
       { label: "Features", href: "/#features" },
       { label: "How it works", href: "/#how-it-works" },
+      { label: "Member Dashboard", href: "/dashboard" },
       { label: "Pricing", href: "/#download" },
       { label: "Download", href: "/#download" },
     ],

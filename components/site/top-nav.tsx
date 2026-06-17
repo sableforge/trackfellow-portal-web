@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Menu, X } from "lucide-react"
+import { Menu, X, LayoutDashboard } from "lucide-react"
 import { BrandMark } from "./brand-mark"
 import { cn } from "@/lib/utils"
 
@@ -13,6 +13,7 @@ const NAV_LINKS: { hash?: string; href?: string; label: string }[] = [
   { hash: "story", label: "Our story" },
   { hash: "articles", label: "Articles" },
   { href: "/sponsorship", label: "Sponsorship" },
+  { href: "/dashboard", label: "Dashboard" },
 ]
 
 export function TopNav() {
@@ -91,6 +92,14 @@ export function TopNav() {
 
         {/* Right slot — desktop: CTA | mobile: hamburger */}
         <div className="flex flex-1 items-center justify-end gap-2">
+          <Link
+            href="/dashboard"
+            className="hidden items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground/80 shadow-sm transition-colors hover:bg-muted md:inline-flex"
+            aria-label="Member dashboard"
+          >
+            <LayoutDashboard size={15} aria-hidden="true" />
+            Dashboard
+          </Link>
           <Link
             href={downloadHref}
             className="hidden items-center gap-2 rounded-full bg-forest px-5 py-2.5 text-sm font-semibold text-forest-foreground shadow-sm transition-transform hover:-translate-y-0.5 md:inline-flex"
