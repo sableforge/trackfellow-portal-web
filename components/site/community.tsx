@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { Instagram, ExternalLink } from "lucide-react"
+import { SITE } from "@/lib/site"
 
 const PHOTOS = [
   {
@@ -43,7 +44,7 @@ export function Community() {
             Share your best moments, swap training tips, and follow along with
             handlers from around the world. Tag{" "}
             <a
-              href="https://instagram.com/trackfellow"
+              href={SITE.social.instagram}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 font-semibold text-primary underline decoration-primary/30 transition-colors hover:decoration-primary"
@@ -59,7 +60,7 @@ export function Community() {
           {PHOTOS.map((p, i) => (
             <a
               key={i}
-              href="https://instagram.com/trackfellow"
+              href={SITE.social.instagram}
               target="_blank"
               rel="noopener noreferrer"
               className="group relative aspect-square overflow-hidden rounded-3xl ring-1 ring-border transition-transform hover:-translate-y-1 ring-soft"
@@ -70,6 +71,7 @@ export function Community() {
                 alt={p.alt}
                 width={600}
                 height={600}
+                sizes="(min-width: 1024px) 25vw, 50vw"
                 className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
               <span
@@ -86,7 +88,7 @@ export function Community() {
 
         <div className="mt-10 text-center">
           <a
-            href="https://instagram.com/trackfellow"
+            href={SITE.social.instagram}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-6 py-3 text-sm font-semibold text-foreground transition-transform hover:-translate-y-0.5"

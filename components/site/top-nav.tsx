@@ -12,8 +12,8 @@ const NAV_LINKS: { hash?: string; href?: string; label: string }[] = [
   { hash: "how-it-works", label: "How it works" },
   { hash: "story", label: "Our story" },
   { hash: "articles", label: "Articles" },
+  { href: "/faq", label: "FAQ" },
   { href: "/sponsorship", label: "Sponsorship" },
-  { href: "/dashboard", label: "Dashboard" },
 ]
 
 export function TopNav() {

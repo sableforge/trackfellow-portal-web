@@ -1,10 +1,10 @@
 const ITEMS = [
-  "120k+ tracks logged",
-  "14 countries",
-  "4.9 ★ on the App Store",
-  "Trusted by SAR teams",
-  "9k+ articles marked weekly",
-  "Built with trainers, for trainers",
+  "Lay GPS tracks",
+  "Follow trails in real time",
+  "Mark articles",
+  "Record session feedback",
+  "Review training statistics",
+  "Share tracks with fellow handlers",
 ]
 
 export function StatsMarquee() {

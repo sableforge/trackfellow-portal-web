@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { Star, MapPin, Compass } from "lucide-react"
+import { Compass } from "lucide-react"
 import { Parallax } from "./parallax"
 import { StoreButtons } from "./store-buttons"
 
@@ -34,7 +34,7 @@ export function Hero() {
                 <span className="absolute inline-flex h-full w-full rounded-full bg-primary opacity-70 animate-scent" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
               </span>
-              New · AI assistant in Trackfellow is live
+              New · AI assistant in TrackFellow is live
             </div>
 
             <h1
@@ -65,16 +65,7 @@ export function Hero() {
 
             <dl className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 lg:justify-start">
               <div className="flex items-center gap-2">
-                <div className="flex" aria-hidden="true">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      size={16}
-                      className="fill-accent text-accent"
-                    />
-                  ))}
-                </div>
-                <dt className="sr-only">App rating</dt>
+                <dt className="sr-only">Feature</dt>
                 <dd className="text-sm font-medium text-foreground">
                   <span className="font-semibold">Lay</span>
                   <span className="text-foreground/60"> · Tracks</span>
@@ -112,8 +103,8 @@ export function Hero() {
                   alt="A focused tracking dog following a scent trail through tall grass."
                   width={400}
                   height={500}
+                  sizes="(min-width: 1024px) 224px, 176px"
                   className="h-56 w-full object-cover lg:h-64"
-                  priority
                 />
               </figure>
             </Parallax>
@@ -128,6 +119,7 @@ export function Hero() {
                   alt="Aerial view of a winding scent trail through a meadow with markers."
                   width={400}
                   height={500}
+                  sizes="(min-width: 1024px) 208px, 160px"
                   className="h-48 w-full object-cover lg:h-56"
                 />
               </figure>
@@ -143,6 +135,7 @@ export function Hero() {
                 alt="TrackFellow live track screen showing the route, articles and score."
                 width={340}
                 height={720}
+                sizes="(min-width: 1280px) 506px, (min-width: 1024px) 480px, (min-width: 640px) 380px, 260px"
                 className="w-full h-auto object-contain drop-shadow-2xl"
                 priority
               />

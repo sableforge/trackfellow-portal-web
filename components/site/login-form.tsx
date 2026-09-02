@@ -3,6 +3,7 @@
 import { signIn } from "next-auth/react"
 import { useState } from "react"
 import Image from "next/image"
+import { SITE } from "@/lib/site"
 import Link from "next/link"
 import { BrandMark } from "./brand-mark"
 
@@ -136,9 +137,9 @@ export function LoginForm({ callbackUrl }: { callbackUrl: string }) {
           <div className="mt-8 space-y-2 text-center">
             <p className="text-xs text-foreground/50 leading-relaxed">
               By signing in you agree to our{" "}
-              <a href="#" className="underline hover:text-foreground">Terms of Service</a>
+              <a href={SITE.legal.terms} className="underline hover:text-foreground">Terms of Service</a>
               {" "}and{" "}
-              <a href="#" className="underline hover:text-foreground">Privacy Policy</a>.
+              <a href={SITE.legal.privacy} className="underline hover:text-foreground">Privacy Policy</a>.
             </p>
             <p className="text-xs text-foreground/50">
               Don&apos;t have the app yet?{" "}
@@ -154,7 +155,7 @@ export function LoginForm({ callbackUrl }: { callbackUrl: string }) {
           href="/"
           className="mt-10 text-xs text-foreground/40 hover:text-foreground/70 transition-colors"
         >
-          ← Back to trackfellow.com
+          ← Back to TrackFellow.com
         </Link>
       </div>
     </div>

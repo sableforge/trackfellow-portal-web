@@ -22,10 +22,10 @@ export const ARTICLES: Article[] = [
     author: "TrackFellow Team",
     readingTime: "5 min read",
     content: [
-      "TrackFellow was born on a cold morning in the woods, after Jenna spent yet another session scribbling notes on a damp paper field-book. As a long-time mantrailer and instructor, she knew that the data trainers collect during a session is gold — but only if it can be reviewed, compared and shared without friction.",
-      "Jenna started sketching what would become TrackFellow in 2023: a simple, beautiful pocket field-book that records every track in GPS, tags articles with a single tap, and turns those raw inputs into clear progress over time.",
-      "Today, TrackFellow is used by trainers, search-and-rescue handlers and hobbyists in 14 countries. The mission stays the same: give working teams the tools to learn faster, together.",
-      "We sat down with Jenna to talk about the early days, the design choices behind the app, and where TrackFellow is going next. Stay tuned for the full interview, dropping later this month.",
+      "Jenna actively trains and competes in dog-tracking events, volunteers with the Swedish Home Guard as a K9 dog commander, and mentors new tracking enthusiasts at her local dog-training club.",
+      "The idea for TrackFellow began in 2023 after Jenna identified a gap in the market for a user-friendly, comprehensive dog-tracking app. Existing tools felt too complicated, missed essential features, or were difficult for new handlers to use.",
+      "TrackFellow brings the core workflow into one place: laying and following tracks, marking specific points, recording feedback, reviewing statistics and weather data, generating reports, and sharing tracks with other handlers.",
+      "Jenna's goal is to make tracking easier and more accessible without limiting experienced teams. TrackFellow is built for beginners, experienced trackers, competitive teams, instructors, and dog owners who enjoy tracking recreationally.",
     ],
   },
   {

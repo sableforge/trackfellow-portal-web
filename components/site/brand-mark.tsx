@@ -16,10 +16,10 @@ export function BrandMark({
       <Image
         src="/trackfellow-logo.png"
         alt="TrackFellow"
-        width={140}
+        width={181}
         height={36}
         className="h-9 w-auto object-contain"
-        priority
+        sizes="181px"
       />
     </span>
   )

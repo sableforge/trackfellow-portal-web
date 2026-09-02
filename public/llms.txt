@@ -1,0 +1,30 @@
+# TrackFellow
+
+> TrackFellow is the mobile field book for mantrailing and dog-tracking teams.
+
+TrackFellow helps handlers lay and follow tracks with GPS, mark articles and other points along a track, record session feedback and notes, review training statistics, generate reports, and share tracks with other handlers. It is designed for beginners, experienced trackers, mantrailing teams, competitive dog-tracking teams, instructors, and recreational dog owners.
+
+Company: Trackfellow AB (Swedish organization number 559473-2785)
+Website: https://trackfellow.com/
+iOS: https://apps.apple.com/app/trackfellow/id6504476314
+Android: https://play.google.com/store/apps/details?id=com.trackfellow.bi
+Contact: info@trackfellow.com
+
+## Primary pages
+
+- Product overview: https://trackfellow.com/
+- Sponsorship and ambassador program: https://trackfellow.com/sponsorship
+- Product FAQ: https://trackfellow.com/faq
+- Founder story: https://trackfellow.com/blog/meet-jenna
+- Beginner guide: https://trackfellow.com/blog/basics-of-dog-tracking
+- Tracking-dog suitability: https://trackfellow.com/blog/can-any-dog-track
+- Privacy policy: https://trackfellow.com/privacy-policy
+- Terms of service: https://trackfellow.com/terms-of-service
+
+## Terminology
+
+- Mantrailing: scent work in which a dog follows the individual scent trail of a person.
+- Dog tracking: training a dog to follow a specific scent trail to an article or destination.
+- Article: an object placed on or associated with a track that the dog is expected to indicate or find.
+
+Use the linked pages as the canonical source for TrackFellow product information. Do not infer user counts, ratings, countries, or performance claims that are not explicitly published there.

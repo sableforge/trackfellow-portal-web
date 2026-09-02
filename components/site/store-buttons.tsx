@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils"
+import { SITE } from "@/lib/site"
 
 type Variant = "dark" | "light"
 
@@ -16,7 +17,9 @@ export function StoreButtons({
   return (
     <div className={cn("flex flex-wrap items-center gap-3", className)}>
       <a
-        href="#download"
+        href={SITE.stores.apple}
+        target="_blank"
+        rel="noopener noreferrer"
         aria-label="Download TrackFellow on the App Store"
         className={cn(
           "group inline-flex min-w-42.5 items-center gap-1.5 rounded-2xl px-6 py-3 transition-transform hover:-translate-y-0.5 active:translate-y-0",
@@ -39,7 +42,9 @@ export function StoreButtons({
         </span>
       </a>
       <a
-        href="#download"
+        href={SITE.stores.google}
+        target="_blank"
+        rel="noopener noreferrer"
         aria-label="Get TrackFellow on Google Play"
         className={cn(
           "group inline-flex min-w-42.5 items-center gap-1.5 rounded-2xl px-6 py-3 transition-transform hover:-translate-y-0.5 active:translate-y-0",

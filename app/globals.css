@@ -52,6 +52,13 @@
   --chart-5: #A9B26B;
 
   --radius: 1.25rem;
+  --radius-control: 1rem;
+  --radius-card: 1.5rem;
+  --radius-feature: 2rem;
+  --radius-pill: 9999px;
+
+  --shadow-soft: 0 12px 32px -16px rgba(56, 68, 32, 0.25);
+  --shadow-pop: 0 24px 48px -20px rgba(109, 121, 53, 0.55);
 
   --sidebar: #F2EBE3;
   --sidebar-foreground: #2A3318;
@@ -88,7 +95,7 @@
 @theme inline {
   --font-sans: var(--font-jakarta), 'system-ui';
   --font-display: var(--font-bricolage), 'system-ui';
-  --font-mono: var(--font-geist-mono), 'ui-monospace';
+  --font-mono: 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', monospace;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -180,13 +187,13 @@
   .ring-soft {
     box-shadow:
       0 1px 0 rgba(56,68,32,0.04),
-      0 12px 32px -16px rgba(56,68,32,0.25);
+      var(--shadow-soft);
   }
 
   .ring-pop {
     box-shadow:
       0 1px 0 rgba(56,68,32,0.06),
-      0 24px 48px -20px rgba(109,121,53,0.55);
+      var(--shadow-pop);
   }
 
   .mask-fade-b {
