@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next"
-import { Bricolage_Grotesque, Plus_Jakarta_Sans, Geist_Mono } from "next/font/google"
+import { Bricolage_Grotesque, Plus_Jakarta_Sans } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { SITE } from "@/lib/site"
 import "./globals.css"
 
 const bricolage = Bricolage_Grotesque({
@@ -15,21 +16,14 @@ const jakarta = Plus_Jakarta_Sans({
   display: "swap",
 })
 
-const geistMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-geist-mono",
-  display: "swap",
-})
-
 export const metadata: Metadata = {
-  metadataBase: new URL("https://trackfellow.com"),
+  metadataBase: new URL(SITE.url),
   title: {
-    default: "TrackFellow — Mantrailing & Dog Tracking, Logged Beautifully",
+    default: SITE.name,
     template: "%s · TrackFellow",
   },
-  description:
-    "TrackFellow is the mobile app for mantrailing and tracking enthusiasts. Lay tracks with GPS, mark articles, log feedback and unlock data-driven insights into your dog's progress.",
-  applicationName: "TrackFellow",
+  description: SITE.description,
+  applicationName: SITE.name,
   keywords: [
     "mantrailing app",
     "dog tracking app",
@@ -40,37 +34,13 @@ export const metadata: Metadata = {
     "dog training analytics",
     "TrackFellow",
   ],
-  authors: [{ name: "TrackFellow" }],
-  creator: "TrackFellow",
-  publisher: "TrackFellow",
-  alternates: { canonical: "/" },
-  openGraph: {
-    type: "website",
-    siteName: "TrackFellow",
-    title: "TrackFellow — Mantrailing & Dog Tracking, Logged Beautifully",
-    description:
-      "Lay tracks, mark articles, score sessions and watch your dog's nose-work improve. Built with trainers, for trainers.",
-    url: "/",
-    locale: "en_US",
-    images: [
-      {
-        url: "/images/hero-dog-tracking.jpg",
-        width: 1200,
-        height: 630,
-        alt: "A focused tracking dog following a scent trail through a forest path at golden hour.",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "TrackFellow — Mantrailing & Dog Tracking, Logged Beautifully",
-    description:
-      "The smart companion for mantrailing and tracking dog teams. Log tracks, mark articles, learn faster.",
-    images: ["/images/hero-dog-tracking.jpg"],
-  },
+  authors: [{ name: SITE.legalName, url: SITE.url }],
+  creator: SITE.legalName,
+  publisher: SITE.legalName,
+  openGraph: { siteName: SITE.name, locale: "en_US" },
   robots: { index: true, follow: true },
   category: "Sports & Outdoors",
-  generator: "v0.app",
+  other: { "apple-itunes-app": "app-id=6504476314" },
   icons: {
     icon: [
       { url: "/icon-light-32x32.png", media: "(prefers-color-scheme: light)" },
@@ -97,25 +67,46 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://trackfellow.com/#org",
-      name: "TrackFellow",
-      url: "https://trackfellow.com",
-      logo: "https://trackfellow.com/icon.svg",
-      sameAs: ["https://www.instagram.com/trackfellow"],
+      "@id": `${SITE.url}/#org`,
+      name: SITE.name,
+      legalName: SITE.legalName,
+      url: SITE.url,
+      logo: `${SITE.url}/icon.svg`,
+      email: SITE.email,
+      identifier: SITE.organizationNumber,
+      sameAs: [
+        SITE.social.instagram,
+        SITE.social.facebook,
+        SITE.stores.apple,
+        SITE.stores.google,
+      ],
     },
     {
-      "@type": "MobileApplication",
-      name: "TrackFellow",
+      "@type": "WebSite",
+      "@id": `${SITE.url}/#website`,
+      name: SITE.name,
+      url: SITE.url,
+      publisher: { "@id": `${SITE.url}/#org` },
+      inLanguage: "en",
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": `${SITE.url}/#app`,
+      name: SITE.name,
+      url: SITE.url,
       operatingSystem: "iOS, Android",
       applicationCategory: "SportsApplication",
-      description:
-        "TrackFellow helps mantrailing and tracking dog teams lay tracks via GPS, mark articles, score sessions, and analyze performance over time.",
+      description: SITE.description,
+      downloadUrl: [SITE.stores.apple, SITE.stores.google],
+      publisher: { "@id": `${SITE.url}/#org` },
+      featureList: [
+        "Lay and follow GPS tracks",
+        "Mark articles and points along a track",
+        "Record session feedback and notes",
+        "Review dog-training statistics and reports",
+        "Share tracks with other handlers",
+      ],
       offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "4.9",
-        reviewCount: "1284",
-      },
     },
   ],
 }
@@ -126,7 +117,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${bricolage.variable} ${jakarta.variable} ${geistMono.variable} bg-background`}
+      className={`${bricolage.variable} ${jakarta.variable} bg-background`}
     >
       <body className="font-sans antialiased text-foreground bg-background">
         <a
@@ -138,7 +129,6 @@ export default function RootLayout({
         {children}
         <script
           type="application/ld+json"
-          // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         {process.env.NODE_ENV === "production" && <Analytics />}

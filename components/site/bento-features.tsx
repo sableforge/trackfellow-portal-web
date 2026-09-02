@@ -99,7 +99,7 @@ export function BentoFeatures() {
             title="Your Settings"
             body="Customize your preferences to fit your training needs. 
               Adjust various settings to personalize your experience, 
-              ensuring that Trackfellow aligns perfectly with your training goals and methods.">
+              ensuring that TrackFellow aligns perfectly with your training goals and methods.">
             <div className="mt-4 flex items-center gap-2">
               {["Glove", "Key", "Sock"].map((t) => (
                 <span

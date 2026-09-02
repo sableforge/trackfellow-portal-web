@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 import { Quote } from "lucide-react"
 import { Parallax } from "./parallax"
 
@@ -20,6 +21,7 @@ export function Founder() {
                   alt="Jenna, founder of TrackFellow, crouched next to her working dog in a forest clearing."
                   width={900}
                   height={1100}
+                  sizes="(min-width: 1024px) 50vw, 100vw"
                   className="h-[480px] w-full object-cover sm:h-[560px]"
                 />
                 <figcaption className="sr-only">
@@ -35,8 +37,8 @@ export function Founder() {
               <div className="rounded-3xl bg-accent p-5 text-accent-foreground ring-soft">
                 <Quote size={20} aria-hidden="true" />
                 <p className="mt-3 font-display text-lg font-semibold leading-snug text-balance">
-                  &ldquo;I built TrackFellow because notebooks always lied about
-                  the weather.&rdquo;
+                  &ldquo;I wanted to make dog tracking easier, more accessible,
+                  and fun.&rdquo;
                 </p>
                 <p className="mt-2 text-xs">— Jenna, Founder</p>
               </div>
@@ -52,7 +54,7 @@ export function Founder() {
                 </p>
                 <p className="font-display text-2xl font-semibold">2023</p>
                 <p className="text-xs text-foreground/60">
-                  Started in Helsinki
+                  The idea began
                 </p>
               </div>
             </Parallax>
@@ -72,24 +74,24 @@ export function Founder() {
             </h2>
             <div className="mt-6 space-y-5 text-lg leading-relaxed text-foreground/80 text-pretty">
               <p>
-                Jenna spent a decade running mantrailing clinics across
-                Scandinavia and watching trainers wrestle with paper logs,
-                phone notes and three different stopwatches per session.
+                Jenna actively trains and competes in dog-tracking events and
+                volunteers with the Swedish Home Guard as a K9 dog commander.
+                She also mentors new enthusiasts at her local dog-training club.
               </p>
               <p>
-                TrackFellow is the tool she always wanted: one app, one screen,
-                quietly recording every detail so trainers can keep their
-                hands on the leash and their eyes on the dog.
+                She started TrackFellow after seeing a need for a user-friendly,
+                comprehensive tracking app for beginners and experienced
+                handlers alike.
               </p>
             </div>
 
-            <a
-              href="#articles"
+            <Link
+              href="/blog/meet-jenna"
               className="mt-8 inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-semibold text-background transition-transform hover:-translate-y-0.5"
             >
               Read the full story
               <span aria-hidden="true">→</span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

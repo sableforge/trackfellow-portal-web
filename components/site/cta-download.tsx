@@ -62,7 +62,7 @@ export function CtaDownload() {
         </div>
 
         <ul className="mx-auto mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm">
-          {["No credit card needed", "iOS & Android", "14k+ users"].map((t) => (
+          {["Free to download", "iOS & Android", "Built for every tracking level"].map((t) => (
             <li key={t} className="flex items-center gap-2 text-forest-foreground/80">
               <span
                 aria-hidden="true"

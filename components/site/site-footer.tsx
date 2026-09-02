@@ -1,4 +1,5 @@
 import { BrandMark } from "./brand-mark"
+import { SITE } from "@/lib/site"
 
 const NAV = {
   product: {
@@ -6,8 +7,8 @@ const NAV = {
     links: [
       { label: "Features", href: "/#features" },
       { label: "How it works", href: "/#how-it-works" },
+      { label: "FAQ", href: "/faq" },
       { label: "Member Dashboard", href: "/dashboard" },
-      { label: "Pricing", href: "/#download" },
       { label: "Download", href: "/#download" },
     ],
   },
@@ -17,16 +18,15 @@ const NAV = {
       { label: "About", href: "/#story" },
       { label: "Blog", href: "/#articles" },
       { label: "Sponsorship", href: "/sponsorship" },
-      { label: "Community", href: "https://instagram.com/trackfellow" },
-      { label: "Contact", href: "mailto:hello@trackfellow.com" },
+      { label: "Community", href: SITE.social.instagram },
+      { label: "Contact", href: `mailto:${SITE.email}` },
     ],
   },
   legal: {
     title: "Legal",
     links: [
-      { label: "Privacy", href: "#" },
-      { label: "Terms", href: "#" },
-      { label: "Cookies", href: "#" },
+      { label: "Privacy", href: SITE.legal.privacy },
+      { label: "Terms", href: SITE.legal.terms },
     ],
   },
 }
@@ -52,7 +52,7 @@ export function SiteFooter() {
             </p>
             <div className="flex items-center gap-4 pt-2">
               <a
-                href="https://instagram.com/trackfellow"
+                href={SITE.social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -68,7 +68,7 @@ export function SiteFooter() {
                 </svg>
               </a>
               <a
-                href="https://facebook.com/trackfellow"
+                href={SITE.social.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
@@ -112,7 +112,7 @@ export function SiteFooter() {
 
         <div className="mt-12 border-t border-border pt-8 text-center text-sm text-foreground/60 sm:text-left">
           <p>
-            &copy; {new Date().getFullYear()} TrackFellow. All rights reserved.
+            &copy; {new Date().getFullYear()} {SITE.legalName}. All rights reserved. · Org. no. {SITE.organizationNumber}
           </p>
         </div>
       </div>

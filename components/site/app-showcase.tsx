@@ -68,9 +68,9 @@ export function AppShowcase() {
             </ul>
 
             <div className="mt-10 grid max-w-md grid-cols-3 gap-4">
-              <Stat k="120k+" v="Tracks" />
-              <Stat k="9k" v="Articles / wk" />
-              <Stat k="4.9★" v="App rating" />
+              <Stat k="GPS" v="Track routes" />
+              <Stat k="1 tap" v="Mark articles" />
+              <Stat k="History" v="Review progress" />
             </div>
           </div>
 
@@ -86,6 +86,7 @@ export function AppShowcase() {
                   alt="A happy working dog with bright eyes resting in a forest setting."
                   width={400}
                   height={500}
+                  sizes="192px"
                   className="h-56 w-full object-cover"
                 />
               </figure>

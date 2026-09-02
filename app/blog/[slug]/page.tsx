@@ -7,6 +7,7 @@ import { TopNav } from "@/components/site/top-nav"
 import { SiteFooter } from "@/components/site/site-footer"
 import { MobileCta } from "@/components/site/mobile-cta"
 import { ARTICLES, getArticleBySlug } from "@/lib/articles"
+import { SITE, absoluteUrl } from "@/lib/site"
 
 export function generateStaticParams() {
   return ARTICLES.map((a) => ({ slug: a.slug }))
@@ -60,11 +61,43 @@ export default async function BlogPostPage({
   }).format(new Date(article.date))
 
   const related = ARTICLES.filter((a) => a.slug !== article.slug).slice(0, 2)
+  const articleUrl = absoluteUrl(`/blog/${article.slug}`)
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": `${articleUrl}#article`,
+        headline: article.title,
+        description: article.excerpt,
+        image: absoluteUrl(article.cover),
+        datePublished: article.date,
+        dateModified: article.date,
+        mainEntityOfPage: articleUrl,
+        articleBody: article.content.join("\n\n"),
+        author: { "@type": "Organization", name: article.author, url: SITE.url },
+        publisher: { "@id": `${SITE.url}/#org` },
+        inLanguage: "en",
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: SITE.url },
+          { "@type": "ListItem", position: 2, name: "Articles", item: `${SITE.url}/#articles` },
+          { "@type": "ListItem", position: 3, name: article.title, item: articleUrl },
+        ],
+      },
+    ],
+  }
 
   return (
     <>
       <TopNav />
       <main id="main" className="relative pt-24 pb-16 sm:pt-28 sm:pb-24">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <article className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <Link
             href="/#articles"
@@ -148,6 +181,7 @@ export default async function BlogPostPage({
                         alt={a.alt}
                         width={600}
                         height={375}
+                        sizes="(min-width: 640px) 50vw, 100vw"
                         className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                       />
                     </figure>

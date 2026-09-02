@@ -3,6 +3,37 @@
 import { useEffect, useRef, type ReactNode } from "react"
 import { cn } from "@/lib/utils"
 
+type Subscriber = () => void
+
+const subscribers = new Set<Subscriber>()
+let frame = 0
+
+function flush() {
+  frame = 0
+  subscribers.forEach((subscriber) => subscriber())
+}
+
+function schedule() {
+  if (!frame) frame = requestAnimationFrame(flush)
+}
+
+function subscribe(subscriber: Subscriber) {
+  subscribers.add(subscriber)
+  if (subscribers.size === 1) {
+    window.addEventListener("scroll", schedule, { passive: true })
+    window.addEventListener("resize", schedule)
+  }
+  return () => {
+    subscribers.delete(subscriber)
+    if (subscribers.size === 0) {
+      window.removeEventListener("scroll", schedule)
+      window.removeEventListener("resize", schedule)
+      cancelAnimationFrame(frame)
+      frame = 0
+    }
+  }
+}
+
 type ParallaxProps = {
   speed?: number
   className?: string
@@ -28,8 +59,9 @@ export function Parallax({
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches
     if (reduce) return
 
-    let raf = 0
+    let visible = false
     const update = () => {
+      if (!visible) return
       const rect = el.getBoundingClientRect()
       const offset = rect.top + rect.height / 2 - window.innerHeight / 2
       const amount = -offset * speed
@@ -38,17 +70,18 @@ export function Parallax({
           ? `translate3d(0, ${amount.toFixed(2)}px, 0)`
           : `translate3d(${amount.toFixed(2)}px, 0, 0)`
     }
-    const onScroll = () => {
-      cancelAnimationFrame(raf)
-      raf = requestAnimationFrame(update)
-    }
-    update()
-    window.addEventListener("scroll", onScroll, { passive: true })
-    window.addEventListener("resize", onScroll)
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        visible = entry.isIntersecting
+        if (visible) update()
+      },
+      { rootMargin: "25% 0px" },
+    )
+    observer.observe(el)
+    const unsubscribe = subscribe(update)
     return () => {
-      cancelAnimationFrame(raf)
-      window.removeEventListener("scroll", onScroll)
-      window.removeEventListener("resize", onScroll)
+      observer.disconnect()
+      unsubscribe()
     }
   }, [speed, axis])
 
